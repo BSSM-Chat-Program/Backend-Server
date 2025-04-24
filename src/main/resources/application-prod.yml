@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: teachmon-prod
+  config:
+    import:
+      - optional:file:env/prod.env[.properties]
+  datasource:
+    driver-class-name:
+      ${POSTGRES_DRIVER_NAME}
+    url:
+      ${POSTGRES_URL}
+    username:
+      ${POSTGRES_USERNAME}
+    password:
+      ${POSTGRES_ROOT_PASSWORD}
+
+oauth2:
+  google:
+    service-name: google
+    base-url: ${OAUTH2_BASE_URL}
+    client-id: ${OAUTH2_CLIENT_ID}
+    client-secret: ${OAUTH2_CLIENT_SECRET}
+    redirect-uri: ${OAUTH2_REDIRECT_URI}
+    grant-type: ${OAUTH2_GRANT_TYPE}
+    response-type: CODE
+    scopes:
+      - https://www.googleapis.com/auth/userinfo.email
+      - https://www.googleapis.com/auth/userinfo.profile
+
+redis:
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}
+  password: ${REDIS_PASSWORD}
+
+jwt:
+  secret: ${JWT_SECRET}
+  access-expiration: ${JWT_ACCESS_EXPIRATION}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION}
