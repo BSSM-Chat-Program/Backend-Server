@@ -3,7 +3,6 @@ package bssmchat.domain.oauth2.infra.client.google;
 import bssmchat.domain.oauth2.infra.client.OAuth2TokenClient;
 import bssmchat.domain.oauth2.presentation.dto.res.google.GoogleOAuth2TokenResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 )
 public interface GoogleOAuth2TokenClient extends OAuth2TokenClient {
 
-    @PostMapping(value = "/token", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "/token")
     GoogleOAuth2TokenResponse getToken(
             @RequestParam("code") String code,
             @RequestParam("client_id") String clientId,

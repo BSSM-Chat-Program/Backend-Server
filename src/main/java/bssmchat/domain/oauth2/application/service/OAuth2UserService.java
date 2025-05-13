@@ -5,8 +5,8 @@ import bssmchat.domain.oauth2.domain.service.UserSaveService;
 import bssmchat.domain.oauth2.infra.client.OAuth2TokenClient;
 import bssmchat.domain.oauth2.infra.client.OAuth2UserClient;
 import bssmchat.domain.oauth2.presentation.dto.res.OAuth2TokenResponse;
-import bssmchat.domain.oauth2.presentation.dto.res.OAuth2UserResponse;
 import bssmchat.domain.oauth2.presentation.dto.res.TokenResponse;
+import bssmchat.domain.oauth2.presentation.dto.res.OAuth2UserResponse;
 import bssmchat.global.properties.OAuth2Properties;
 import bssmchat.global.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class OAuth2UserService {
                 oAuth2Properties.getGrantType()
         );
 
-        String oAuth2AccessToken = oAuth2TokenResponse.getAccessToken();
+        String oAuth2AccessToken = "Bearer " + oAuth2TokenResponse.getAccessToken();
 
         OAuth2UserResponse oAuth2UserResponse = oAuth2UserClient.getUserInfo(oAuth2AccessToken);
         String oAuth2Id = oAuth2Properties.getServiceName() + " " + oAuth2UserResponse.getId();

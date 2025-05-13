@@ -2,6 +2,7 @@ package bssmchat.domain.oauth2.presentation.controller;
 
 import bssmchat.domain.oauth2.application.service.OAuth2LinkService;
 import bssmchat.domain.oauth2.application.service.OAuth2UserService;
+import bssmchat.domain.oauth2.presentation.dto.req.OAuth2CodeRequest;
 import bssmchat.domain.oauth2.presentation.dto.res.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +15,7 @@ import java.net.URI;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/oauth2")
-public class GoogleOAuth2Controller {
+public class OAuth2Controller {
     private final OAuth2LinkService oAuth2TokenService;
     private final OAuth2UserService oAuth2UserService;
 
@@ -29,8 +30,8 @@ public class GoogleOAuth2Controller {
 
     @PostMapping("/login/{organization}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> login(@PathVariable String organization, @RequestBody String code) {
-        TokenResponse tokenResponse = oAuth2UserService.loginUserByCode(code, organization);
+    public ResponseEntity<String> login(@PathVariable String organization, @RequestBody OAuth2CodeRequest oAuth2CodeRequest) {
+        TokenResponse tokenResponse = oAuth2UserService.loginUserByCode(oAuth2CodeRequest.getCode(), organization);
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, tokenResponse.refreshTokenCookie())
                 .body(tokenResponse.accessToken());

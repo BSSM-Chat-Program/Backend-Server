@@ -17,6 +17,15 @@ spring:
     hibernate:
       ddl-auto: update
     database: postgresql
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
+      http2client:
+        enabled: true
+      httpclient:
+        hc5:
+          enabled: true
 
 oauth2:
   google:

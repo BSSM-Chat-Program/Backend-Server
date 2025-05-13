@@ -7,6 +7,7 @@ import bssmchat.domain.user.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ import java.util.Optional;
 public class UserSaveService {
     private final UserRepository userRepository;
 
+    @Transactional
     public void saveUser(String oAuth2Id, OAuth2UserResponse oAuth2UserResponse) {
         Optional<UserEntity> userEntity = userRepository.findByOauth2Id(oAuth2Id);
         if(userEntity.isEmpty()) {

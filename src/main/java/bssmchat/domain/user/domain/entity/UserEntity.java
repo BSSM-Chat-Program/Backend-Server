@@ -1,10 +1,7 @@
 package bssmchat.domain.user.domain.entity;
 
 import bssmchat.domain.authority.domain.Role;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Getter
 public class UserEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)

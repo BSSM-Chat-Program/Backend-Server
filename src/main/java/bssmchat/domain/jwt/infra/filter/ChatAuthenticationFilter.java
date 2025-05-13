@@ -60,6 +60,7 @@ public class ChatAuthenticationFilter extends OncePerRequestFilter {
                 .code(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(jwtException.getMessage())
                 .build();
+        response.setStatus(HttpStatus.BAD_REQUEST.value());
         response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
     }
 
@@ -68,6 +69,7 @@ public class ChatAuthenticationFilter extends OncePerRequestFilter {
                 .code(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(invalidJsonWebTokenException.getMessage())
                 .build();
+        response.setStatus(HttpStatus.BAD_REQUEST.value());
         response.getWriter().write(objectMapper.writeValueAsString(errorResponse));
     }
 
